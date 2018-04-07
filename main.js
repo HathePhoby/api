@@ -1,6 +1,7 @@
 //counters & getting html ellements
 var pageCounter = 0;
 var getD= document.getElementById("getD");
+var hottest = document.getElementById("Hottest");
 var button = document.getElementById("button");
 var CountryList = ["Denmark", "London", "Sweeden", "Norway", "Belgium", "Cyprus", "Finland", "France", "Germany", "Greece", "Hungary", "Italy",  "Malta", "Poland", "Romania", "Portugal", "Spain", "Ireland", "Luxembourg"];
 var tempNumber = "<p>" + "</p>";
@@ -35,10 +36,13 @@ button.addEventListener("click", function(){
 //render and display data
 function renderHTML(data){
     var htmlString = "";
-    var tem = 0;
+    var tem = [];
+    var countryName = data.name;
 
     tem = data.main.temp;
+   
     newData.push(tem);
+    //console.log(newData);
     htmlString += "<p>" + data.name + "  " + data.sys.country + " ";
 
     if(data.main.temp > 0){
@@ -48,6 +52,18 @@ function renderHTML(data){
     }
     htmlString += "</p>";
     getD.insertAdjacentHTML('beforeend', htmlString);
+
+    newData.sort(function(a,b){
+        return a-b;
+        console.log(newData);
+    })
+  
+        return [].slice.call(arguments).sort(function(a,b){ 
+          return b - a; 
+          hottest.insertAdjacentHTML('beforeend', "<br>" + tem + " " + countryName);
+        }); 
+ 
+  
   
 };
 
@@ -83,7 +99,7 @@ function charts(data){
       ]);
 
       var options = {
-        title: 'Temper, wind s',
+        title: 'Temperature',
         hAxis: {title: 'X', minValue: 0, maxValue: 22},
         vAxis: {title: 'Y', minValue: 0, maxValue: 15},        
         legend: 'none'
@@ -113,7 +129,7 @@ function charts(data){
       ]);
 
       var options = {
-        title: 'Company Performance',
+        title: 'Line chart',
         curveType: 'function',
         legend: { position: 'bottom' }
       };
