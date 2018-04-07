@@ -1,0 +1,9 @@
+#chart_div2 {
+
+position: inline;
+margin-bottom: 50%;
+}
+
+.hide-me {
+    display: none;
+}
