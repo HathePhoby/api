@@ -1,9 +1,32 @@
-#chart_div2 {
-
-position: inline;
-margin-bottom: 50%;
+body {
+    width: 100%;
+    height: 100%;
 }
+#chart_div2 {
+    position: fixed;
+    padding-left: 70px;
+    margin-top: -50px;
+    z-index: -1;
+    width: 600px;
+    height: 500px;
+
+}
+
+#curve_chart {
+    position: fixed;
+   margin-top: -50px;
+   padding-left: 550px;
+    z-index: -11;
+    width: 600px;
+    height: 500px;
+
+}
+
 
 .hide-me {
     display: none;
+}
+
+.container {
+    position: absolute;
 }

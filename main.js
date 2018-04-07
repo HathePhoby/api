@@ -37,21 +37,16 @@ function renderHTML(data){
     var htmlString = "";
     var tem = 0;
 
-    
-
     tem = data.main.temp;
     newData.push(tem);
     htmlString += "<p>" + data.name + "  " + data.sys.country + " ";
-   
-   // htmlString += " " + data.main.temp + " ";
+
     if(data.main.temp > 0){
         htmlString += " + " + data.main.temp + " ";
     } else {
         htmlString += " - " + data.main.temp + " ";
     }
     htmlString += "</p>";
-   // console.log(tem);
-    console.log(newData);
     getD.insertAdjacentHTML('beforeend', htmlString);
   
 };
@@ -62,36 +57,71 @@ function charts(data){
     google.charts.setOnLoadCallback(drawChart);
 
     const temperatureData = parseInt(data.main.temp);
-    //const windData = parseInt(data.wind.speed);
-   // const cloudsData = parseInt(data.clouds.all);
-
     function drawVisualization() {}
 
     function drawChart() {
       var dataa = google.visualization.arrayToDataTable([
-        ['Temperatyre', 'Wind', 'Clouds'],
-        [  newData[0],      newData[0],   newData[0]],
-        [   newData[1],       newData[1],    newData[1]],
-        [   newData[2],       newData[2],    newData[2]],
-        [  newData,      newData,   newData],
-        [  newData,      newData,   newData],
-        [  newData,      newData,   newData],
-        [  newData,      newData,   newData]
-       
-        
+
+        ['Temperatyre', 'Wind'],
+        [  newData[0],      newData[0]],
+        [   newData[1],       newData[1]],
+        [   newData[2],       newData[2]],
+        [  newData[3],      newData[3]],
+        [  newData[7],      newData[6]],
+        [  newData[8],      newData[8]],
+        [  newData[9],      newData[9]],
+        [  newData[10],      newData[10]],
+        [  newData[11],      newData[11]],
+        [  newData[12],      newData[12]],
+        [  newData[13],      newData[13]],
+        [  newData[14],      newData[14]],
+        [  newData[15],      newData[15]],
+        [  newData[16],      newData[16]],
+        [  newData[17],      newData[17]],
+        [  newData[18],      newData[18]]
+            
       ]);
 
       var options = {
         title: 'Temper, wind s',
-         hAxis: {title: 'Temperatyre', minValue: 0, maxValue: 22},
-          vAxis: {title: 'Wind', minValue: 0, maxValue: 15},
-          xAxis: {title: 'Clouds', minValue: 0, maxValue: 15},
-  
+        hAxis: {title: 'X', minValue: 0, maxValue: 22},
+        vAxis: {title: 'Y', minValue: 0, maxValue: 15},        
         legend: 'none'
       };
       
       var chart = new google.visualization.ScatterChart(document.getElementById('chart_div2'));
       chart.draw(dataa, options);
+
+      var Data = google.visualization.arrayToDataTable([
+        ['Year', 'Temp'],
+        [  newData[0],      newData[0]],
+        [   newData[1],       newData[1]],
+        [   newData[2],       newData[2]],
+        [  newData[3],      newData[3]],
+        [  newData[7],      newData[6]],
+        [  newData[8],      newData[8]],
+        [  newData[9],      newData[9]],
+        [  newData[10],      newData[10]],
+        [  newData[11],      newData[11]],
+        [  newData[12],      newData[12]],
+        [  newData[13],      newData[13]],
+        [  newData[14],      newData[14]],
+        [  newData[15],      newData[15]],
+        [  newData[16],      newData[16]],
+        [  newData[17],      newData[17]],
+        [  newData[18],      newData[18]]
+      ]);
+
+      var options = {
+        title: 'Company Performance',
+        curveType: 'function',
+        legend: { position: 'bottom' }
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+      chart.draw(Data, options);
     }
 
 }
+
+
