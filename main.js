@@ -129,12 +129,12 @@ function charts(data){
       
 
       var currentTemperature = data.main.temp;
-      
+
       colorTemp.push(parseInt(currentTemperature));
       //console.log(colorTemp);
       var DATA = google.visualization.arrayToDataTable([     
-        ['Location',     'Parent',          'Temperature',          'Market increase/decrease (color)'],
-        ['Locations',        null,             data.main.temp,                          0],
+        ['Location',     'Parent',               'Temperature',                              'color'],
+        ['Locations',        null,                         -15,                                     -15],
         [CountryList[0],   "Locations",        data.main.temp,                          colorTemp[0]],
         [CountryList[1],   "Locations",        data.main.temp,                          colorTemp[1]],
         [CountryList[2],   "Locations",        data.main.temp,                          colorTemp[2]],
@@ -156,17 +156,22 @@ function charts(data){
         [CountryList[18],  "Locations",        data.main.temp,                          colorTemp[18]]
         
       ]);
-      console.log(data.main.temp);
+    //  console.log(data.main.temp);
       tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
-
-      tree.draw(DATA, {
-        minColor: '#f00',
-        midColor: '#402be0',
-        maxColor: '#0d0',
-        headerHeight: 55,
-        fontColor: 'black',
-        showScale: true
-      });
+      if(currentTemperature < 0){
+            currentTemperature = 55;
+      } else {
+        tree.draw(DATA, {
+            minColor: '#f00',
+            midColor: '#402be0',
+            maxColor: '#0d0',
+            headerHeight: 15,
+            fontColor: 'gray',
+            showScale: false
+    
+          });
+      }
+      
     }
 
 }
